@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,10 +25,27 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <head>
+         <link
+          href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+          rel="stylesheet"
+        />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <div className="flex  min-h-screen gap-4">
+          <div className="w-64 bg-white p-6 space-y-4 ">
+            <h1>SkillSync</h1>
+            <nav>
+              <Link href="/" className="hover:text-blue-600">Home</Link>
+              <Link href="/users" className="hover:text-blue-600">Users</Link>
+              <Link href="/skills" className="hover:text-blue-600">Skills</Link>
+              <Link href="/dashboard" className="hover:text-blue-600">Dashboard</Link>
+            </nav>
+          </div>
+          <main className="flex-1 p-6">
+             {children}
+          </main>
+        </div>
       </body>
     </html>
   );
